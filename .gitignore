@@ -1,0 +1,8 @@
+build/**
+install/**
+log/**
+*.jpg/**
+**.png
+**.DAE/**
+*.DAE
+*.sdf
