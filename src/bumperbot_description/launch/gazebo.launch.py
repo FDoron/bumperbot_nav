@@ -74,7 +74,21 @@ def generate_launch_description():
                    "-name", "bumperbot"],
     )
 
-    gz_ros2_bridge = Node(
+    # ROS-Gazebo Bridge Node with Config File
+    bridge_params = os.path.join(get_package_share_directory("bumperbot_description"),'config','gz_bridge.yaml')
+    ros_gz_bridge_with_yaml = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
+
+    # Additional ROS-Gazebo Bridge Topics
+
+    ros_gz_additional_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
@@ -83,9 +97,19 @@ def generate_launch_description():
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
         remappings=[
-            ('/imu', '/imu/out'),
+            ('/imu', '/imu/out')
         ]
     )
+    
+
+    # Image Bridge for Camera
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"]
+    )
+
+
 
     return LaunchDescription([
         model_arg,
@@ -94,5 +118,8 @@ def generate_launch_description():
         robot_state_publisher_node,
         gazebo,
         gz_spawn_entity,
-        gz_ros2_bridge
+        # gz_ros2_bridge,
+        ros_gz_bridge_with_yaml,
+        ros_gz_additional_bridge,
+        ros_gz_image_bridge,
     ])

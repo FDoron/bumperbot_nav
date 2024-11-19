@@ -14,6 +14,10 @@
   <!-- Include ros2_control Plugins -->
   <xacro:include filename="$(find bumperbot_description)/urdf/bumperbot_ros2_control.xacro" />
 
+  <!-- Include Camera Model -->
+  <xacro:include filename="$(find bumperbot_description)/urdf/bumperbot_camera.xacro" />
+
+
   <link name="base_footprint"/>
   
   <link name="base_link">
@@ -238,5 +242,12 @@
   <material name="dark_grey">
     <color rgba="0.3 0.3 0.3 1"/>
   </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="orange">
+    <color rgba="1 0.3 0.1 1"/>
+  </material>
+
 
 </robot>
