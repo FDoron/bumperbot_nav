@@ -25,6 +25,10 @@ setup(
         'console_scripts': [
             'f2c_path_planner = bumperbot_navigation.f2c_path_planner:main',
             'path_converter = bumperbot_navigation.path_converter:main',
+            # 'nav2_twist_relay = bumperbot_navigation.nav2_twist_relay:main',
+            'path_executor = bumperbot_navigation.path_executor:main',
+            'waypoint_follower = bumperbot_navigation.waypoint_follower:main',
+            'frame_verification = bumperbot_navigation.frame_verification:main',
         ],
     },
 )

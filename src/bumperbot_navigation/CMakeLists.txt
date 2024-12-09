@@ -22,6 +22,10 @@ ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
   scripts/f2c_path_planner.py
   scripts/path_converter.py
+  scripts/path_executer.py
+  scripts/nav2_twist_relay.py
+  scripts/waypoint_follower.py
+  scripts/frame_verification.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

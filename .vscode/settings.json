@@ -18,5 +18,9 @@
         "/home/doron/bumperbot_ws/install/bumperbot_firmware/lib/python3.12/site-packages",
         "/home/doron/bumperbot_ws/install/bumperbot_controller/lib/python3.12/site-packages",
         "/opt/ros/jazzy/lib/python3.12/site-packages"
-    ]
+    ],
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    }
 }

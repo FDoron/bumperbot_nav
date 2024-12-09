@@ -42,13 +42,32 @@ const_hl = f2c.HG_Const_gen()
 no_hl = const_hl.generateHeadlands(field.field, 3.0 * robot.robot_width)
 bf = f2c.SG_BruteForce()
 swaths = bf.generateSwaths(math.pi, robot.op_width, no_hl.getGeometry(0))
-snake_sorter = f2c.RP_Snake()
-swaths = snake_sorter.genSortedSwaths(swaths)
+boustrophedon_sorter = f2c.RP_Boustrophedon()
+swaths = boustrophedon_sorter.genSortedSwaths(swaths)
 
 robot.setMinRadius(2)
 path_planner = f2c.PP_PathPlanning()
 dubins = f2c.PP_DubinsCurves()
 path = path_planner.searchBestPath(robot, swaths, dubins)
+
+# a = dir(path)
+# print(a)
+
+# for idx, point in enumerate(path(0)):
+#     pass
+
+path_size = path.size()
+    
+    # Iterate through path using size
+for i in range(path_size):
+    state = path.states[i]  
+    
+    # p = Point()
+    # p.x = state[0].x
+    # p.y = state[0].y
+    # p.z = 0.0  # Assuming 2D path
+    # marker.points.append(p)
+
 
 f2c.Visualizer.figure(71)
 f2c.Visualizer.plot(field)

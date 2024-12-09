@@ -109,6 +109,6 @@ def generate_launch_description():
         safety_stop,
         localization,
         slam,
-        rviz_localization,
+        # rviz_localization,
         rviz_slam
     ])

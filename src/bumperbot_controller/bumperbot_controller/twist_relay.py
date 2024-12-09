@@ -29,6 +29,27 @@ class TwistRelayNode(Node):
             10
         )
 
+        # Add navigation subscription
+        self.nav_sub = self.create_subscription(
+            Twist,
+            "/nav_vel",
+            self.nav_twist_callback,
+            10
+        )
+        # Add navigation publisher
+        self.nav_pub = self.create_publisher(
+            TwistStamped,
+            "/bumperbot_controller/cmd_vel",
+            10
+        )
+
+    def nav_twist_callback(self, msg):
+        twist_stamped = TwistStamped()
+        twist_stamped.header.stamp = self.get_clock().now().to_msg()
+        twist_stamped.twist = msg
+        self.nav_pub.publish(twist_stamped)
+
+    # Previous methods remain unchanged
     def controller_twist_callback(self, msg):
         twist_stamped = TwistStamped()
         twist_stamped.header.stamp = self.get_clock().now().to_msg()

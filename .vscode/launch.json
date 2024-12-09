@@ -1,0 +1,75 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Debug ROS2 Navigation Nodes",
+            "configurations": [
+                "Debug F2C Path Planner", 
+                "Debug Path Converter",
+                "Debug Nav2 Twist Relay"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Debug F2C Path Planner",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bumperbot_navigation/bumperbot_navigation/f2c_path_planner.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}",
+                "ROS_PYTHON_VERSION": "3"
+            },
+            "args": [
+                "--ros-args",
+                "-r", "__node:=f2c_path_planner_debug"
+            ]
+        },
+        {
+            "name": "Debug Path Converter",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bumperbot_navigation/bumperbot_navigation/path_converter.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}",
+                "ROS_PYTHON_VERSION": "3"
+            },
+            "args": [
+                "--ros-args",
+                "-r", "__node:=path_converter_debug"
+            ]
+        },
+        {
+            "name": "Debug Nav2 Twist Relay",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bumperbot_navigation/bumperbot_navigation/nav2_twist_relay.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}",
+                "ROS_PYTHON_VERSION": "3"
+            },
+            "args": [
+                "--ros-args",
+                "-r", "__node:=nav2_twist_relay_debug"
+            ]
+        },
+        {
+            "name": "Debug Nav2 Path Executor",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bumperbot_navigation/bumperbot_navigation/path_executor.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}",
+                "ROS_PYTHON_VERSION": "3"
+            },
+            "args": [
+                "--ros-args",
+                "-r", "__node:=path_executor_debug"
+            ]
+        },
+    ]
+}
