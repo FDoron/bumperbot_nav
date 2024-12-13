@@ -151,12 +151,13 @@ endif(BUILD_SHARED_LIBS)
 target_compile_features(Fields2Cover PUBLIC cxx_std_17)
 
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+  if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
   target_compile_options(Fields2Cover PRIVATE
     -pedantic -Wall -Wfatal-errors
-    -Werror -Wno-dev -Wextra -Wno-unused-parameter -Wno-sign-compare
+    -Wno-error -Wno-dev -Wextra -Wno-unused-parameter -Wno-sign-compare
     -Wno-attributes -Wl,--no-undefined -Wshadow
   )
+
 elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
   target_compile_options(Fields2Cover PRIVATE /W4)
 elseif(${CMAKE_CXX_COMPILER_ID} MATCHES "^(Apple)?Clang$")

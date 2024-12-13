@@ -8,6 +8,7 @@
   <license>Apache 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>opennav_coverage_demo</build_depend>
 
   <exec_depend>rplidar_ros</exec_depend>
   <exec_depend>rviz2</exec_depend>
@@ -16,9 +17,11 @@
   <exec_depend>bumperbot_description</exec_depend>
   <exec_depend>bumperbot_localization</exec_depend>
   <exec_depend>bumperbot_mapping</exec_depend>
+  <exec_depend>opennav_coverage_demo</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+
 
   <export>
     <build_type>ament_cmake</build_type>

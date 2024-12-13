@@ -31,12 +31,24 @@ from launch_ros.actions import Node
 def generate_launch_description():
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
     coverage_demo_dir = get_package_share_directory('opennav_coverage_demo')
-    rviz_config_file = os.path.join(coverage_demo_dir, 'rviz_config.rviz')
+    rviz_config_file = os.path.join(coverage_demo_dir, 'params', 'rviz_config.rviz')
     sim_dir = get_package_share_directory('nav2_minimal_tb3_sim')
+    print(f"Resolved sim_dir: {sim_dir}")
+    print(f"Does sim_dir exist? {os.path.exists(sim_dir)}")
+    print(f"Contents of sim_dir: {os.listdir(sim_dir)}")
+    print(f"Does rviz_config_file exist? {os.path.exists(rviz_config_file)}")
+    print(f"Contenets of rviz_config_file  {rviz_config_file}")
 
-    world = os.path.join(coverage_demo_dir, 'blank.world')
-    param_file_path = os.path.join(coverage_demo_dir, 'demo_params.yaml')
+    resolved_rviz_config = os.path.abspath(rviz_config_file)
+    print(f"Resolved full path of rviz_config_file: {resolved_rviz_config}")
+    print(f"Does resolved_rviz_config_file exist? {os.path.exists(resolved_rviz_config)}")
+
+
+    world = os.path.join(coverage_demo_dir, 'world','blank.world')
+    param_file_path = os.path.join(coverage_demo_dir, 'params','demo_params.yaml')
     robot_sdf = os.path.join(sim_dir, 'urdf', 'gz_waffle.sdf.xacro')
+    print(f"Robot SDF path: {robot_sdf}")
+    print(f"Does robot SDF exist? {os.path.exists(robot_sdf)}")
 
     # start the simulation
     world_sdf = tempfile.mktemp(prefix='nav2_', suffix='.sdf')
@@ -47,6 +59,7 @@ def generate_launch_description():
     )
 
     urdf = os.path.join(sim_dir, 'urdf', 'turtlebot3_waffle.urdf')
+    print(f"Robot urdf: {urdf}")
     with open(urdf, 'r') as infp:
         robot_description = infp.read()
 
@@ -94,7 +107,7 @@ def generate_launch_description():
 
     # start navigation
     bringup_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(coverage_demo_dir, 'bringup_launch.py')),
+        PythonLaunchDescriptionSource(os.path.join(coverage_demo_dir, 'launch', 'bringup_launch.py')),
         launch_arguments={'params_file': param_file_path}.items(),
     )
 
