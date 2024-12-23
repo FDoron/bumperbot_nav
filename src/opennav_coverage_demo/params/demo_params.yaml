@@ -2,9 +2,9 @@ coverage_server:
   ros__parameters:
     use_sim_time: True
     default_headland_width: 0.25
-    robot_width: 0.7
-    operation_width: 0.7
-    min_turning_radius: 0.35
+    robot_width: 0.17
+    operation_width: 0.17
+    min_turning_radius: 0.09
     linear_curv_change: 200.0
     coordinates_in_cartesian_frame: true
     default_allow_overlap: false
@@ -14,9 +14,9 @@ coverage_server:
 row_coverage_server:
   ros__parameters:
     use_sim_time: True
-    robot_width: 0.7
-    operation_width: 0.7
-    min_turning_radius: 0.35
+    robot_width: 0.17
+    operation_width: 0.34
+    min_turning_radius: 0.09
     linear_curv_change: 200.0
     coordinates_in_cartesian_frame: true
     default_swath_type: "CENTER"
@@ -65,6 +65,7 @@ controller_server:
     # RPP parameters
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      cmd_vel_topic: "/cmd_vel_nav" #"bumperbot_controller/cmd_vel_unstamped" # DFR Make sure this matches your DiffDriveController's input topic
       desired_linear_vel: 0.5
       lookahead_dist: 0.6
       min_lookahead_dist: 0.3

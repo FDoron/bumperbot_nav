@@ -77,12 +77,12 @@ def generate_launch_description():
             'namespace': '',
             'robot_name': 'turtlebot3_waffle',
             'robot_sdf': robot_sdf,
-            'x_pose': str(6.23),
-            'y_pose': str(15.0),
+            'x_pose': str(5.0),
+            'y_pose': str(5.0),
             'z_pose': str(0.1),
             'roll': str(0.0),
             'pitch': str(0.0),
-            'yaw': str(-1.5708),
+            'yaw': str(0.0),
         }.items(),
     )
 
@@ -103,7 +103,7 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['6.23', '15', '0', '0', '0', '0', 'map', 'odom'],
+        arguments=['5.0', '5.0', '0', '0', '0', '0', 'map', 'odom'],
     )
     fake_gps_cmd = Node(
         package='tf2_ros',

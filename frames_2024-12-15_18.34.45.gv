@@ -1,18 +1,15 @@
 digraph G {
-"odom" -> "base_footprint_noisy"[label=" Broadcaster: default_authority\nAverage rate: 100.792\nBuffer length: 1.389\nMost recent transform: 78.099\nOldest transform: 76.71\n"];
-"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 5.833\nBuffer length: 1.2\nMost recent transform: 79.0\nOldest transform: 77.8\n"];
-"base_link" -> "wheel_left_link"[label=" Broadcaster: default_authority\nAverage rate: 20.714\nBuffer length: 1.4\nMost recent transform: 78.11\nOldest transform: 76.71\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 51.562\nBuffer length: 0.64\nMost recent transform: 1.73\nOldest transform: 1.09\n"];
 "base_footprint" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"base_link" -> "wheel_right_link"[label=" Broadcaster: default_authority\nAverage rate: 20.714\nBuffer length: 1.4\nMost recent transform: 78.11\nOldest transform: 76.71\n"];
-"odom" -> "base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 50.769\nBuffer length: 1.3\nMost recent transform: 78.11\nOldest transform: 76.81\n"];
 "base_link" -> "camera_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "camera_link" -> "camera_link_optical"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "base_link" -> "caster_front_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "base_link" -> "caster_rear_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "base_link" -> "imu_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "base_link" -> "laser_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 1732889723.4695883"[ shape=plaintext ] ;
+"Recorded at time: 1734287685.6738296"[ shape=plaintext ] ;
 }->"map";
 }

@@ -79,8 +79,7 @@
     <axis xyz="0 1 0" />
   </joint>
   
-  <link
-    name="wheel_left_link">
+  <link name="wheel_left_link">
     <inertial>
       <origin xyz="0 0.014 0" rpy="0 0 0" />
       <mass value="0.0530086043217644" />

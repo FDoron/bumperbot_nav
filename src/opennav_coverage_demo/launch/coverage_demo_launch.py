@@ -128,16 +128,16 @@ def generate_launch_description():
     )
 
     ld = LaunchDescription()
-    ld.add_action(world_sdf_xacro)
-    ld.add_action(remove_temp_sdf_file)
-    ld.add_action(gazebo_server)
-    ld.add_action(gazebo_client)
-    ld.add_action(start_gazebo_spawner_cmd)
+    # ld.add_action(world_sdf_xacro)
+    # ld.add_action(remove_temp_sdf_file)
+    # ld.add_action(gazebo_server)
+    # ld.add_action(gazebo_client)
+    # ld.add_action(start_gazebo_spawner_cmd)
 
-    ld.add_action(start_robot_state_publisher_cmd)
+    # ld.add_action(start_robot_state_publisher_cmd)
     ld.add_action(rviz_cmd)
     ld.add_action(bringup_cmd)
-    ld.add_action(fake_localization_cmd)
+    # ld.add_action(fake_localization_cmd)
     ld.add_action(demo_cmd)
     return ld
 

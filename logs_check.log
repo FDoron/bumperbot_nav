@@ -1,0 +1,45 @@
+component_container_isolated-21] [INFO] [1734377832.466353357] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[component_container_isolated-21] [INFO] [1734377832.466438065] [lifecycle_manager_navigation]: Activating bt_navigator
+[component_container_isolated-21] [INFO] [1734377832.466720941] [bt_navigator]: Activating
+[component_container_isolated-21] [INFO] [1734377832.514081359] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-21] [INFO] [1734377832.634255368] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[component_container_isolated-21] [INFO] [1734377832.634314244] [lifecycle_manager_navigation]: Activating velocity_smoother
+[component_container_isolated-21] [INFO] [1734377832.637228754] [velocity_smoother]: Activating
+[component_container_isolated-21] [INFO] [1734377832.637284587] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-21] [INFO] [1734377832.741946542] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[component_container_isolated-21] [INFO] [1734377832.741990958] [lifecycle_manager_navigation]: Activating coverage_server
+[component_container_isolated-21] [INFO] [1734377832.742200042] [coverage_server]: Activating coverage_server
+[component_container_isolated-21] [INFO] [1734377832.798078907] [coverage_server]: Creating bond (coverage_server) to lifecycle manager.
+[component_container_isolated-21] [INFO] [1734377832.913187440] [lifecycle_manager_navigation]: Server coverage_server connected with bond.
+[component_container_isolated-21] [INFO] [1734377832.913253857] [lifecycle_manager_navigation]: Managed nodes are active
+[component_container_isolated-21] [INFO] [1734377832.913275107] [lifecycle_manager_navigation]: Creating bond timer...
+[demo_coverage-22] Getting bt_navigator state...
+[demo_coverage-22] Result of get_state: active
+[amcl-17] [INFO] [1734377834.188523366] [amcl]: Message Filter dropping message: frame 'laser_link' at time 0.003 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-20] [INFO] [1734377834.552008315] [rviz]: Message Filter dropping message: frame 'odom' at time 0.360 for reason 'discarding message because the queue is full'
+[rviz2-20] [INFO] [1734377834.781753668] [rviz]: Message Filter dropping message: frame 'odom' at time 0.420 for reason 'discarding message because the queue is full'
+[rviz2-20] [INFO] [1734377835.801141802] [rviz2]: Trying to create a map of size 60 x 60 using 1 swatches
+[demo_coverage-22] Waiting for 'NavigateCompleteCoverage' action server
+[demo_coverage-22] Navigating to with field of size: 5...
+[component_container_isolated-21] [INFO] [1734377835.837897014] [bt_navigator]: Begin coverage navigating with outer field of size: 5!
+[component_container_isolated-21] [INFO] [1734377835.849981265] [coverage_server]: Generating coverage path in map frame for zone with 5 outer nodes and 0 inner polygons.
+[component_container_isolated-21] [INFO] [1734377835.901722239] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-21] [WARN] [1734377835.902183658] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[component_container_isolated-21] [WARN] [1734377835.902343616] [controller_server]: No progress checker was specified in parameter 'current_progress_checker'. Server will use only plugin loaded progress_checker . This warning will appear once.
+[demo_coverage-22] Estimated time of arrival: 0 seconds.
+[demo_coverage-22] Estimated time of arrival: 0 seconds.
+[demo_coverage-22] Estimated time of arrival: 0 seconds.
+[rviz2-20] [INFO] [1734377856.218660096] [rviz]: Message Filter dropping message: frame 'odom' at time 0.500 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+...
+[rviz2-20] [INFO] [1734377856.815613614] [rviz]: Message Filter dropping message: frame 'odom' at time 0.760 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[demo_coverage-22] Estimated time of arrival: 0 seconds.
+[rviz2-20] [INFO] [1734377857.032013304] [rviz]: Message Filter dropping message: frame 'laser_link' at time 0.003 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+...
+[rviz2-20] [INFO] [1734377858.303063674] [rviz]: Message Filter dropping message: frame 'laser_link' at time 0.400 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+...
+[component_container_isolated-21] [ERROR] [1734377861.952686717] [controller_server]: Failed to make progress
+[component_container_isolated-21] [WARN] [1734377861.952776176] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-21] [WARN] [1734377861.979745183] [bt_navigator]: [navigate_complete_coverage] [ActionServer] Aborting handle.
+[component_container_isolated-21] [ERROR] [1734377861.983757530] [bt_navigator]: Goal failed
+[demo_coverage-22] Task with failed with status code: 6
+[demo_coverage-22] Goal failed!

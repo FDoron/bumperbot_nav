@@ -15,6 +15,13 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     bumperbot_description = get_package_share_directory("bumperbot_description")
 
+    # Declare pose arguments in the top-level launch file
+    declare_x_pose_arg = DeclareLaunchArgument("x_pose", default_value="0.0", description="Initial X position")
+    declare_y_pose_arg = DeclareLaunchArgument("y_pose", default_value="0.0", description="Initial Y position")
+    declare_z_pose_arg = DeclareLaunchArgument("z_pose", default_value="0.0", description="Initial Z position")
+    declare_yaw_pose_arg = DeclareLaunchArgument("yaw_pose", default_value="0.0", description="Initial yaw angle")
+
+
     model_arg = DeclareLaunchArgument(
         name="model", default_value=os.path.join(
                 bumperbot_description, "urdf", "bumperbot.urdf.xacro"
@@ -66,13 +73,30 @@ def generate_launch_description():
                 }.items()
              )
 
+    # gz_spawn_entity = Node(
+    #     package="ros_gz_sim",
+    #     executable="create",
+    #     output="screen",
+    #     arguments=["-topic", "robot_description",
+    #                "-name", "bumperbot"],
+    # )
+
+    # Added initial position for integration with opennav_coverage
     gz_spawn_entity = Node(
         package="ros_gz_sim",
         executable="create",
         output="screen",
-        arguments=["-topic", "robot_description",
-                   "-name", "bumperbot"],
+        arguments=[
+            "-topic", "robot_description",
+            "-name", "bumperbot",
+            "-x", LaunchConfiguration("x_pose"),
+            "-y", LaunchConfiguration("y_pose"),
+            "-z", LaunchConfiguration("z_pose"),
+            "-Y", LaunchConfiguration("yaw_pose"),
+        ],
     )
+
+
 
     # ROS-Gazebo Bridge Node with Config File
     bridge_params = os.path.join(get_package_share_directory("bumperbot_description"),'config','gz_bridge.yaml')
@@ -113,6 +137,11 @@ def generate_launch_description():
 
     return LaunchDescription([
         model_arg,
+        # Declare pose arguments in the top-level launch file
+        declare_x_pose_arg,
+        declare_y_pose_arg,
+        declare_z_pose_arg,
+        declare_yaw_pose_arg,
         world_name_arg,
         gazebo_resource_path,
         robot_state_publisher_node,

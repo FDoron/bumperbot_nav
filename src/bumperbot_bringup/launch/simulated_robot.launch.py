@@ -17,10 +17,10 @@ def generate_launch_description():
     )
 
     # Initial pose arguments
-    x_pose = LaunchConfiguration('x_pose', default='0.0')
-    y_pose = LaunchConfiguration('y_pose', default='0.0')
-    z_pose = LaunchConfiguration('z_pose', default='0.0')
-    yaw_pose = LaunchConfiguration('yaw_pose', default='0.0')
+    x_pose = LaunchConfiguration('x_pose', default='5.0')
+    y_pose = LaunchConfiguration('y_pose', default='5.0')
+    z_pose = LaunchConfiguration('z_pose', default='0.1')
+    yaw_pose = LaunchConfiguration('yaw_pose', default='-1.57')
 
     # Pose arguments declaration
     declare_x_pose_arg = DeclareLaunchArgument('x_pose', default_value='0.0')
@@ -41,6 +41,7 @@ def generate_launch_description():
             'yaw_pose': yaw_pose
         }.items()
     )
+    
     
     controller = IncludeLaunchDescription(
         os.path.join(
@@ -125,34 +126,34 @@ def generate_launch_description():
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
-            arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom'],
+            arguments=['5.0', '5.0', '0', '0', '0', '0', 'map', 'odom'],
             name='map_to_odom_tf'
         ),
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
-            name='base_link_to_footprint_tf'
-        )
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     arguments=['0', '0', '0', '0', '0', '0', 'base_footprint', 'base_link'],
+        #     # arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
+        #     name='base_link_to_footprint_tf'
+        # )
     ]
 
 
-    # coverage_demo = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(
-    #         os.path.join(
-    #             get_package_share_directory("opennav_coverage_demo"), 
-    #             "opennav_coverage_demo",
-    #             "launch", 
-    #             "coverage_demo_launch.py"
-    #         )
-    #     ),
-    #     launch_arguments={
-    #         'x_pose': x_pose,
-    #         'y_pose': y_pose,
-    #         'z_pose': z_pose,
-    #         'yaw_pose': yaw_pose
-    #     }.items()
-    # )
+    coverage_demo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory("opennav_coverage_demo"), 
+                "launch", 
+                "coverage_demo_launch.py"
+            )
+        )#,
+        # launch_arguments={
+        #     'x_pose': x_pose,
+        #     'y_pose': y_pose,
+        #     'z_pose': z_pose,
+        #     'yaw_pose': yaw_pose
+        # }.items()
+    )
     
     
 
@@ -171,5 +172,5 @@ def generate_launch_description():
         # rviz_localization,
         rviz_slam,
         *static_transforms,
-        # coverage_demo
+        coverage_demo
     ])
