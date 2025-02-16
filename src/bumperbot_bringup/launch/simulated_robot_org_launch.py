@@ -5,7 +5,6 @@ from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def generate_launch_description():
@@ -16,32 +15,13 @@ def generate_launch_description():
         default_value="false"
     )
 
-    # Initial pose arguments
-    x_pose = LaunchConfiguration('x_pose', default='0.0')
-    y_pose = LaunchConfiguration('y_pose', default='0.0')
-    z_pose = LaunchConfiguration('z_pose', default='0.0')
-    yaw_pose = LaunchConfiguration('yaw_pose', default='0.0')
-
-    # Pose arguments declaration
-    declare_x_pose_arg = DeclareLaunchArgument('x_pose', default_value='0.0')
-    declare_y_pose_arg = DeclareLaunchArgument('y_pose', default_value='0.0')
-    declare_z_pose_arg = DeclareLaunchArgument('z_pose', default_value='0.0')
-    declare_yaw_pose_arg = DeclareLaunchArgument('yaw_pose', default_value='0.0')
-
     gazebo = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("bumperbot_description"),
             "launch",
             "gazebo.launch.py"
         ),
-        launch_arguments={
-            'x_pose': x_pose,
-            'y_pose': y_pose,
-            'z_pose': z_pose,
-            'yaw_pose': yaw_pose
-        }.items()
     )
-    
     
     controller = IncludeLaunchDescription(
         os.path.join(
@@ -54,8 +34,6 @@ def generate_launch_description():
             "use_python": "False"
         }.items(),
     )
-
-    
     
     joystick = IncludeLaunchDescription(
         os.path.join(
@@ -83,16 +61,6 @@ def generate_launch_description():
         ),
         condition=UnlessCondition(use_slam)
     )
-
-    #DFR
-    # localization_local = IncludeLaunchDescription(
-    #     os.path.join(
-    #         get_package_share_directory("bumperbot_localization"),
-    #         "launch",
-    #         "local_localization.launch.py"
-    #     ),
-    #     condition=UnlessCondition(use_slam)
-    # )
 
     slam = IncludeLaunchDescription(
         os.path.join(
@@ -130,58 +98,15 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}],
         condition=IfCondition(use_slam)
     )
-
-     # Static transforms for map to odom and base_link to base_footprint
-    static_transforms = [
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            arguments=['0.0', '0.0', '0', '0', '0', '0', 'map', 'odom'],
-            name='map_to_odom_tf'
-        ),
-        # Node(
-        #     package='tf2_ros',
-        #     executable='static_transform_publisher',
-        #     arguments=['0', '0', '0', '0', '0', '0', 'base_footprint', 'base_link'],
-        #     # arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
-        #     name='base_link_to_footprint_tf'
-        # )
-    ]
-
-
-    coverage_demo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory("opennav_coverage_demo"), 
-                "launch", 
-                "coverage_demo_launch.py"
-            )
-        )#,
-        # launch_arguments={
-        #     'x_pose': x_pose,
-        #     'y_pose': y_pose,
-        #     'z_pose': z_pose,
-        #     'yaw_pose': yaw_pose
-        # }.items()
-    )
     
-    
-
     return LaunchDescription([
         use_slam_arg,
-        declare_x_pose_arg,
-        declare_y_pose_arg,
-        declare_z_pose_arg,
-        declare_yaw_pose_arg,
         gazebo,
         controller,
         joystick,
         safety_stop,
-        # localization_local,
-        # localization,
+        localization,
         slam,
-        # rviz_localization,
-        rviz_slam,
-        *static_transforms,
-        coverage_demo
+        rviz_localization,
+        rviz_slam
     ])

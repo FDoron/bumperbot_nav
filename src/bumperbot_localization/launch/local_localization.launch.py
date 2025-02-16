@@ -32,6 +32,34 @@ def generate_launch_description():
         parameters=[os.path.join(get_package_share_directory("bumperbot_localization"), "config", "ekf.yaml")],
     )
 
+    #DFR - initial poses
+    robot_localization = Node(
+        package="robot_localization",
+        executable="ekf_node",
+        name="ekf_filter_node",
+        output="screen",
+        parameters=[
+            os.path.join(get_package_share_directory("bumperbot_localization"), "config", "ekf.yaml"),
+            {"initial_pose_x": 0.0},
+            {"initial_pose_y": 0.0},
+            {"initial_pose_z": 0.0},
+            {"initial_pose_yaw": 0.0},
+        ],
+    )
+
+    #DFR
+    map_server = Node(
+        package="nav2_map_server",
+        executable="map_server",
+        name="map_server",
+        output="screen",
+        parameters=[
+            os.path.join(get_package_share_directory("bumperbot_mapping"), "maps", "empty_world", "map.yaml"),
+            {"use_sim_time": True},
+        ],
+    )
+
+
     imu_republisher_py = Node(
         package="bumperbot_localization",
         executable="imu_republisher.py",
@@ -46,6 +74,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         use_python_arg,
+        # map_server,
         static_transform_publisher,
         robot_localization,
         imu_republisher_py,

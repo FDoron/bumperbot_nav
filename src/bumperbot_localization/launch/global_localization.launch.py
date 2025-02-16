@@ -60,9 +60,9 @@ def generate_launch_description():
         parameters=[
             amcl_config,
             {"use_sim_time": use_sim_time},
-            {"initial_pose_x": 5.0},
-            {"initial_pose_y": 5.0},
-            {"initial_pose_z": 0.1},
+            {"initial_pose_x": 0.0},
+            {"initial_pose_y": 0.0},
+            {"initial_pose_z": 0.0},
         ],
     )
 

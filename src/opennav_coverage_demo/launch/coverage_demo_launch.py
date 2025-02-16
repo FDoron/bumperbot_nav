@@ -116,7 +116,8 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['5.0', '5.0', '0', '0', '0', '0', 'map', 'odom'],
+        # arguments=['5.0', '5.0', '0', '0', '0', '0', 'map', 'odom'],
+        arguments=['0.0', '0.0', '0', '0', '0', '0', 'map', 'odom'],
     )
 
     # start the demo task
@@ -137,7 +138,7 @@ def generate_launch_description():
     # ld.add_action(start_robot_state_publisher_cmd)
     ld.add_action(rviz_cmd)
     ld.add_action(bringup_cmd)
-    # ld.add_action(fake_localization_cmd)
+    ld.add_action(fake_localization_cmd)
     ld.add_action(demo_cmd)
     return ld
 
