@@ -5,7 +5,7 @@ twist_mux:
       joystick:
         topic   : joy_vel
         timeout : 0.5
-        priority: 98
+        priority: 94
       keyboard: 
         topic   : key_vel
         timeout : 0.5
@@ -13,4 +13,8 @@ twist_mux:
       navigation:
         topic   : nav_vel
         timeout : 0.5
-        priority: 99  # Set this higher than teleop priority to allow navigation to take precedence
+        priority: 96  # Set this higher than teleop priority to allow navigation to take precedence
+      obstacle_avoidance:
+        topic: cmd_vel_safe
+        timeout: 0.5
+        priority: 100

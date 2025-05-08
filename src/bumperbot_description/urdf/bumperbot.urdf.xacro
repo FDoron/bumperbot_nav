@@ -212,7 +212,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/laser_link.STL" />
       </geometry>
-      <material name="dark_grey"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -222,12 +222,38 @@
     </collision>
   </link>
 
-  <joint name="laser_joint" type="fixed">
+   <joint name="laser_joint" type="fixed">
     <origin xyz="-0.0050526 -0.0023221 0.1208" rpy="0 0 3.14" />
     <parent link="base_link" />
     <child link="laser_link" />
     <axis xyz="0 0 0" />
   </joint>
+
+  <link name="ultrasonic_sensor_link">
+    <visual>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>  <!-- Small box to represent the sensor -->
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <origin xyz="0.05 0 0.005" rpy="0 0 0"/>  <!-- Adjust position relative to robot -->
+    <collision>
+      <geometry>
+        <box size="0.02 0.020 0.010"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.015"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="ultrasonic_sensor_joint" type="fixed">
+    <parent link="base_link"/>  <!-- Change to your robot's main body -->
+    <child link="ultrasonic_sensor_link"/>
+    <origin xyz="0.05 0 0.0015" rpy="0 0 0"/>  <!-- Adjust placement -->
+  </joint>
+
 
   <material name="blue">
     <color rgba="0 0 1 1"/>
@@ -245,8 +271,13 @@
     <color rgba="1 0 0 1"/>
   </material>
   <material name="orange">
-    <color rgba="1 0.3 0.1 1"/>
+    <color rgba="1 0.647 0 1"/>
   </material>
+
+  <material name="green">
+      <color rgba="0 1 0 1"/>
+  </material>
+
 
 
 </robot>

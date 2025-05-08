@@ -115,16 +115,33 @@ def generate_launch_description():
     ros_gz_additional_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
+        name="ros_gz_additional_bridge",
+        # parameters=[{
+        #     'qos_overrides./ultrasonic.publisher.reliability': 'reliable',
+        #     'qos_overrides./ultrasonic.publisher.durability': 'volatile'
+        # }],
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
             "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
-            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+            "/ultrasonic@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
         remappings=[
-            ('/imu', '/imu/out')
+            ('/imu', '/imu/out'),
+            ('/ultrasonic', '/ultrasonic/out')
         ]
     )
     
+
+    ros_gz_ultrasonic_convert = Node(
+        package='bumperbot_description',
+        executable='range_to_float32',
+        name='range_to_float32',
+        output='screen',
+        remappings=[
+            ('/ultrasonic/out', '/ultrasonic')  # Swapped the order to match the node's expectation
+        ]
+    )
 
     # Image Bridge for Camera
     ros_gz_image_bridge = Node(
@@ -150,5 +167,6 @@ def generate_launch_description():
         # gz_ros2_bridge,
         ros_gz_bridge_with_yaml,
         ros_gz_additional_bridge,
+        # ros_gz_ultrasonic_convert,
         ros_gz_image_bridge,
     ])

@@ -53,6 +53,13 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}]
     )
 
+    safety_stop_ultrasonic = Node(
+        package="bumperbot_controller",
+        executable="ultrasonic_avoidance.py",
+        name="ultrasonic_avoidance_node",
+        output="screen",
+    )
+
     localization = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("bumperbot_localization"),
@@ -105,6 +112,7 @@ def generate_launch_description():
         controller,
         joystick,
         safety_stop,
+        safety_stop_ultrasonic,
         localization,
         slam,
         rviz_localization,

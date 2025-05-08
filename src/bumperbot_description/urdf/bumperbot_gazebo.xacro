@@ -154,4 +154,45 @@
     </sensor>
   </gazebo>
 
+  <!-- HC-SR04 sensor-->
+    <gazebo reference="ultrasonic_sensor_link">
+    <sensor name="ultrasonic_sensor" type="gpu_lidar">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <topic>ultrasonic</topic>
+      <update_rate>50</update_rate> <!-- Matches typical HC-SR04 behavior -->
+      <pose>0.1 0 0.1 0 0 0</pose> <!-- Adjust pose relative to the link -->
+      <gz_frame_id>ultrasonic_sensor_link</gz_frame_id>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1</samples> <!-- Single ray for HC-SR04 -->
+            <resolution>1.0</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>0.0</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1.0</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>0.0</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.02</min> <!-- Minimum range: 2 cm -->
+          <max>4.0</max> <!-- Maximum range: 400 cm -->
+          <resolution>0.003</resolution> <!-- Accuracy: ±3 mm -->
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.003</stddev> <!-- Noise matches accuracy of ±3 mm -->
+        </noise>
+      </lidar>
+      
+    </sensor>
+
+    <!-- No additional plugin needed since gz-sim-sensors-system is already included globally -->
+  </gazebo>
+
 </robot>
